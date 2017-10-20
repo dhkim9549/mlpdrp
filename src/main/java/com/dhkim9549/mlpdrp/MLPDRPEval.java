@@ -3,6 +3,7 @@ package com.dhkim9549.mlpdrp;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
+import scala.util.Random;
 
 import java.io.*;
 
@@ -33,6 +34,7 @@ public class MLPDRPEval {
         BufferedWriter out = new BufferedWriter(new FileWriter("/down/drp_list_eval.txt"));
 
         String header = "";
+        header += "seq\t";
         header += "guarnt_no\t";
         header += "cllct_rate\t";
         header += "predicted_cllct_rate\t";
@@ -43,6 +45,7 @@ public class MLPDRPEval {
         out.flush();
 
         int i = 0;
+        Random rand = new Random();
 
         String s = "";
         while((s = in.readLine()) != null) {
@@ -61,6 +64,7 @@ public class MLPDRPEval {
             double cllct_rate_old = Double.parseDouble(MLPDRP.getToken(s, 17, "\t"));
             long debt_ramt = Long.parseLong(MLPDRP.getToken(s, 16, "\t"));
             long dischrg_dur_month = Long.parseLong(MLPDRP.getToken(s, 3, "\t"));
+            long seq = rand.nextLong();
 
             double[] featureData = new double[MLPDRP.numOfInputs];
 
@@ -73,11 +77,14 @@ public class MLPDRPEval {
 
             double predicted_cllct_rat = output.getDouble(0);
 
+            /*
             System.out.print("feature = " + feature);
             System.out.print("  output = " + output);
             System.out.println("  cllct_rate = " + cllct_rate);
+            */
 
             String s2 = "";
+            s2 += seq + "\t";
             s2 += guarnt_no + "\t";
             s2 += cllct_rate + "\t";
             s2 += predicted_cllct_rat + "\t";
