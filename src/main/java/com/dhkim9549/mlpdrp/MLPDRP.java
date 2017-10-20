@@ -22,7 +22,7 @@ import java.util.*;
 import java.io.*;
 
 /**
- *  Building a DRP Model with MLP
+ *  Building a Debt Repayment Prediction Model with MLP
  * @author Dong-Hyun Kim
  */
 public class MLPDRP {
