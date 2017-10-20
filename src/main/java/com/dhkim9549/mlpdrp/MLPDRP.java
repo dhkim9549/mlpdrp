@@ -42,10 +42,10 @@ public class MLPDRP {
     static long nEvalSamples = 10000;
 
     // Number of input variables to the neural network
-    static int numOfInputs = 1;
+    static int numOfInputs = 3;
 
     static LineNumberReader in = null;
-    static String trainingDataInputFileName = "/down/data/list.txt";
+    static String trainingDataInputFileName = "/down/collect_data/collect_data_20130101.txt";
 
     public static void main(String[] args) throws Exception {
 
@@ -89,7 +89,7 @@ public class MLPDRP {
             model = train(model, trainIter);
 
             if (i % 50000 == 0) {
-                writeModelToFile(model, "/down/css_model_" + hpId + "_" + i + ".zip");
+                writeModelToFile(model, "/down/drp_model_" + hpId + "_" + i + ".zip");
             }
         }
     }
@@ -158,11 +158,7 @@ public class MLPDRP {
                 in = new LineNumberReader(new FileReader(trainingDataInputFileName));
                 continue;
             }
-            if(s.startsWith("GUARNT_NO")) {
-                continue;
-            }
-            String acpt_updt_dy = getToken(s, 11, "\t");
-            if(acpt_updt_dy.compareTo("20150101") >= 0) {
+            if(s.indexOf("CLLCT_RATE") >= 0) {
                 continue;
             }
 
@@ -201,39 +197,30 @@ public class MLPDRP {
 
     private static DataSet getDataSet(String s) throws Exception {
 
-        String guarnt_no = getToken(s, 0, "\t");
-        String bad_yn = getToken(s, 27, "\t");
-        long income = Long.parseLong(getToken(s, 15, "\t"));
-        long spos_annl_iamt = Long.parseLong(getToken(s, 16, "\t"));
-        long stot_debt_amt = Long.parseLong(getToken(s, 17, "\t"));
-        long spos_debt_amt = Long.parseLong(getToken(s, 18, "\t"));
-        long cb_grd = Long.parseLong(getToken(s, 14, "\t"));
+        String guarnt_no = getToken(s, 1, "\t");
+        double cllct_rate = Double.parseDouble(getToken(s, 18, "\t"));
+        double cllct_rate_old = Double.parseDouble(getToken(s, 17, "\t"));
+        long debt_ramt = Long.parseLong(getToken(s, 16, "\t"));
+        long dischrg_dur_month = Long.parseLong(getToken(s, 3, "\t"));
 
         double[] featureData = new double[numOfInputs];
         double[] labelData = new double[2];
 
-        featureData[0] = (double)cb_grd / 10.0;
-/*
-        featureData[1] = rescaleAmt(income);
-        featureData[2] = rescaleAmt(spos_annl_iamt);
-        featureData[3] = rescaleAmt(stot_debt_amt);
-        featureData[4] = rescaleAmt(spos_debt_amt);
-*/
-        if(bad_yn != null && bad_yn.equals("Y")) {
-            labelData[0] = 1.0;
-            labelData[1] = 0.0;
-        } else {
-            labelData[0] = 0.0;
-            labelData[1] = 1.0;
-        }
+        featureData[0] = cllct_rate_old;
+        featureData[1] = rescaleAmt(debt_ramt);
+        featureData[2] = rescaleAmt(dischrg_dur_month, 0, 120);
+
+        labelData[0] = cllct_rate;
+        labelData[1] = 1.0 - cllct_rate;
 
         INDArray feature = Nd4j.create(featureData, new int[]{1, numOfInputs});
         INDArray label = Nd4j.create(labelData, new int[]{1, 2});
 
         DataSet ds = new DataSet(feature, label);
 
-/*        System.out.println("\nguarnt_no = " + guarnt_no);
-        System.out.println(income + " " + debt + " " + cb_grd);
+/*
+        System.out.println("\nguarnt_no = " + guarnt_no);
+        System.out.println(cllct_rate_old + " " + debt_ramt + " " + dischrg_dur_month);
         System.out.println("ds = " + ds);
 */
 
@@ -247,27 +234,26 @@ public class MLPDRP {
         System.out.println("cb_grd");
         for(int i = 1; i <= 10; i++) {
             double[] featureData = new double[numOfInputs];
-            featureData[0] = (double)i / 10.0;
-/*
-            featureData[1] = rescaleAmt(0);
-            featureData[2] = rescaleAmt(0);
-            featureData[3] = rescaleAmt(0);
-            featureData[4] = rescaleAmt(0);
-*/
+            featureData[0] = i / 10.0;
+            featureData[1] = rescaleAmt(10000000);
+            featureData[2] = rescaleAmt(36, 0, 120);
+
             INDArray feature = Nd4j.create(featureData, new int[]{1, numOfInputs});
             INDArray output = model.output(feature);
             System.out.print("feature = " + feature);
             System.out.print("  output = " + output);
-            double acc_rat = output.getDouble(0);
-            System.out.println("  acc_rat = " + acc_rat);
+            double cllct_rate = output.getDouble(0);
+            System.out.println("  predicted cllct_rate = " + cllct_rate);
         }
     }
 
     public static double rescaleAmt(long x) {
-        x = x + 10000000;
-        long min = 10000000;
-        long max = min + 100000000;
-        double y = (Math.log(x) - Math.log(min)) / (Math.log(max) - Math.log(min));
+        return rescaleAmt(x, 0, 100000000);
+    }
+
+    public static double rescaleAmt(double x, double min, double max) {
+        double base = (max - min) / 10.0;
+        double y = (Math.log(x - min + base) - Math.log(base)) / (Math.log(max - min + base) - Math.log(base));
         return y;
     }
 
