@@ -234,9 +234,9 @@ public class MLPDRP {
         System.out.println("cb_grd");
         for(int i = 1; i <= 10; i++) {
             double[] featureData = new double[numOfInputs];
-            featureData[0] = i / 10.0;
+            featureData[0] = 0.0;
             featureData[1] = rescaleAmt(10000000);
-            featureData[2] = rescaleAmt(36, 0, 120);
+            featureData[2] = rescaleAmt(i * 10.0, 0, 120);
 
             INDArray feature = Nd4j.create(featureData, new int[]{1, numOfInputs});
             INDArray output = model.output(feature);
