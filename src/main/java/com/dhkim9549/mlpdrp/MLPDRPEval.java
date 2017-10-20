@@ -36,6 +36,9 @@ public class MLPDRPEval {
         header += "guarnt_no\t";
         header += "cllct_rate\t";
         header += "predicted_cllct_rate\t";
+        header += "cllct_rate_old\t";
+        header += "debt_ramt\t";
+        header += "dischrg_dur_month\t";
         out.write(header + "\n");
         out.flush();
 
@@ -78,6 +81,9 @@ public class MLPDRPEval {
             s2 += guarnt_no + "\t";
             s2 += cllct_rate + "\t";
             s2 += predicted_cllct_rat + "\t";
+            s2 += cllct_rate_old + "\t";
+            s2 += debt_ramt + "\t";
+            s2 += dischrg_dur_month + "\t";
 
             out.write(s2 + "\n");
             out.flush();
