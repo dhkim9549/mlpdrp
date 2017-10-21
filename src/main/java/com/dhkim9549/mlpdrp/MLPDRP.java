@@ -27,7 +27,7 @@ import java.io.*;
  */
 public class MLPDRP {
 
-    static String hpId = "MLPDRP_h2_uSGD_mb16_ss16";
+    static String hpId = "MLPDRP_h3_uSGD_mb16_ss16";
 
     //double learnigRate = Double.parseDouble(args[0]);
     static double learnigRate = 0.0025;
