@@ -80,6 +80,15 @@ public class MLPDRPEval {
             featureData[0] = cllct_rate_old;
             featureData[1] = MLPDRP.rescaleAmt(debt_ramt);
             featureData[2] = MLPDRP.rescaleAmt(dischrg_dur_month, 0, 120);
+            featureData[3] = MLPDRP.rescaleAmt(org_guarnt_dur_month, 0, 120, true);
+            featureData[4] = MLPDRP.rescaleYn(guarnt_dvcd_rent_yn);
+            featureData[5] = MLPDRP.rescaleYn(guarnt_dvcd_mid_yn);
+            featureData[6] = MLPDRP.rescaleYn(guarnt_dvcd_buy_yn);
+            featureData[7] = MLPDRP.rescaleYn(crdrc_yn);
+            featureData[8] = MLPDRP.rescaleYn(revivl_yn);
+            featureData[9] = MLPDRP.rescaleYn(exempt_yn);
+            featureData[10] = MLPDRP.rescaleYn(sptrepay_yn);
+            featureData[11] = MLPDRP.rescaleYn(psvact_yn);
 
             INDArray feature = Nd4j.create(featureData, new int[]{1, MLPDRP.numOfInputs});
             INDArray output = model.output(feature);
@@ -100,6 +109,8 @@ public class MLPDRPEval {
             s2 += cllct_rate_old + "\t";
             s2 += debt_ramt + "\t";
             s2 += dischrg_dur_month + "\t";
+            s2 += org_guarnt_dur_month + "\t";
+            s2 += guarnt_dvcd_rent_yn + "\t";
 
             out.write(s2 + "\n");
             out.flush();
