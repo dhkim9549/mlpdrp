@@ -46,6 +46,7 @@ public class MLPDRPEval {
 
         int i = 0;
         Random rand = new Random();
+        double squared_error = 0.0;
 
         String s = "";
         while((s = in.readLine()) != null) {
@@ -53,6 +54,7 @@ public class MLPDRPEval {
             i++;
             if(i % 10000 == 0) {
                 System.out.println("i = " + i);
+                System.out.println("MSE = " + (squared_error / (double)i));
             }
 
             if(s.indexOf("CLLCT_RATE") >= 0) {
@@ -95,6 +97,8 @@ public class MLPDRPEval {
 
             double predicted_cllct_rat = output.getDouble(0);
 
+            squared_error +=  Math.pow((predicted_cllct_rat - cllct_rate), 2.0);
+
             /*
             System.out.print("feature = " + feature);
             System.out.print("  output = " + output);
@@ -115,6 +119,8 @@ public class MLPDRPEval {
             out.write(s2 + "\n");
             out.flush();
         }
+        
+        System.out.println("MSE = " + (squared_error / (double)i));
 
         out.close();
     }
