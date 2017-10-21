@@ -239,8 +239,9 @@ public class MLPDRP {
 /*
         System.out.println("\nguarnt_no = " + guarnt_no);
         System.out.println(cllct_rate_old + " " + debt_ramt + " " + dischrg_dur_month);
-        System.out.println("ds = " + ds);
 */
+        System.out.println("ds = " + ds);
+
 
         return ds;
     }
