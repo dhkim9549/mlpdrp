@@ -17,7 +17,7 @@ public class MLPDRPEval {
 
     public static void main(String[] args) throws Exception {
 
-        MultiLayerNetwork model = MLPDRP.readModelFromFile("/down/sin/css_model_MLPCSS_h2_uSGD_mb16_ss16_150000.zip");
+        MultiLayerNetwork model = MLPDRP.readModelFromFile("/down/sin/drp_model_MLPDRP_h2_uSGD_mb16_ss16_150000.zip");
 
         evaluateModelBatch(model);
 
