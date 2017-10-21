@@ -82,6 +82,7 @@ public class MLPDRPEval {
             featureData[0] = cllct_rate_old;
             featureData[1] = MLPDRP.rescaleAmt(debt_ramt);
             featureData[2] = MLPDRP.rescaleAmt(dischrg_dur_month, 0, 120);
+            /*
             featureData[3] = MLPDRP.rescaleAmt(org_guarnt_dur_month, 0, 120, true);
             featureData[4] = MLPDRP.rescaleYn(guarnt_dvcd_rent_yn);
             featureData[5] = MLPDRP.rescaleYn(guarnt_dvcd_mid_yn);
@@ -91,6 +92,7 @@ public class MLPDRPEval {
             featureData[9] = MLPDRP.rescaleYn(exempt_yn);
             featureData[10] = MLPDRP.rescaleYn(sptrepay_yn);
             featureData[11] = MLPDRP.rescaleYn(psvact_yn);
+            */
 
             INDArray feature = Nd4j.create(featureData, new int[]{1, MLPDRP.numOfInputs});
             INDArray output = model.output(feature);
@@ -119,7 +121,7 @@ public class MLPDRPEval {
             out.write(s2 + "\n");
             out.flush();
         }
-        
+
         System.out.println("MSE = " + (squared_error / (double)i));
 
         out.close();
