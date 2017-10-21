@@ -237,13 +237,13 @@ public class MLPDRP {
         INDArray label = Nd4j.create(labelData, new int[]{1, 2});
 
         DataSet ds = new DataSet(feature, label);
-
+        /*
         System.out.println("\nguarnt_no = " + guarnt_no);
         System.out.println(cllct_rate_old + " " + debt_ramt + " " + dischrg_dur_month + " " + org_guarnt_dur_month);
         System.out.println(cllct_rate);
         System.out.println("ds = " + ds);
-
-
+        */
+        
         return ds;
     }
 
