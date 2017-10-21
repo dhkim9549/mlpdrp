@@ -42,7 +42,7 @@ public class MLPDRP {
     static long nEvalSamples = 10000;
 
     // Number of input variables to the neural network
-    static int numOfInputs = 3;
+    static int numOfInputs = 12;
 
     static LineNumberReader in = null;
     static String trainingDataInputFileName = "/down/collect_data/collect_data_20130101.txt";
@@ -202,6 +202,15 @@ public class MLPDRP {
         double cllct_rate_old = Double.parseDouble(getToken(s, 17, "\t"));
         long debt_ramt = Long.parseLong(getToken(s, 16, "\t"));
         long dischrg_dur_month = Long.parseLong(getToken(s, 3, "\t"));
+        long org_guarnt_dur_month = Long.parseLong(getToken(s, 2, "\t")); // new input
+        String guarnt_dvcd_rent_yn = getToken(s, 4, "\t");
+        String guarnt_dvcd_mid_yn = getToken(s, 5, "\t");
+        String guarnt_dvcd_buy_yn = getToken(s, 6, "\t");
+        String crdrc_yn = getToken(s, 7, "\t");
+        String revivl_yn = getToken(s, 8, "\t");
+        String exempt_yn = getToken(s, 9, "\t");
+        String sptrepay_yn = getToken(s, 10, "\t");
+        String psvact_yn = getToken(s, 11, "\t");
 
         double[] featureData = new double[numOfInputs];
         double[] labelData = new double[2];
@@ -209,6 +218,15 @@ public class MLPDRP {
         featureData[0] = cllct_rate_old;
         featureData[1] = rescaleAmt(debt_ramt);
         featureData[2] = rescaleAmt(dischrg_dur_month, 0, 120);
+        featureData[3] = rescaleAmt(org_guarnt_dur_month, 0, 120);
+        featureData[4] = rescaleYn(guarnt_dvcd_rent_yn);
+        featureData[5] = rescaleYn(guarnt_dvcd_mid_yn);
+        featureData[6] = rescaleYn(guarnt_dvcd_buy_yn);
+        featureData[7] = rescaleYn(crdrc_yn);
+        featureData[8] = rescaleYn(revivl_yn);
+        featureData[9] = rescaleYn(exempt_yn);
+        featureData[10] = rescaleYn(sptrepay_yn);
+        featureData[11] = rescaleYn(psvact_yn);
 
         labelData[0] = cllct_rate;
         labelData[1] = 1.0 - cllct_rate;
@@ -237,6 +255,15 @@ public class MLPDRP {
             featureData[0] = 0.0;
             featureData[1] = rescaleAmt(10000000);
             featureData[2] = rescaleAmt(i * 10.0, 0, 120);
+            featureData[3] = 0.0;
+            featureData[4] = 0.0;
+            featureData[5] = 0.0;
+            featureData[6] = 0.0;
+            featureData[7] = 0.0;
+            featureData[8] = 0.0;
+            featureData[9] = 0.0;
+            featureData[10] = 0.0;
+            featureData[11] = 0.0;
 
             INDArray feature = Nd4j.create(featureData, new int[]{1, numOfInputs});
             INDArray output = model.output(feature);
@@ -254,6 +281,14 @@ public class MLPDRP {
     public static double rescaleAmt(double x, double min, double max) {
         double base = (max - min) / 10.0;
         double y = (Math.log(x - min + base) - Math.log(base)) / (Math.log(max - min + base) - Math.log(base));
+        return y;
+    }
+
+    public static double rescaleYn(String x) {
+        double y = 0.0;
+        if(x.equals("Y")) {
+            y = 1.0;
+        }
         return y;
     }
 
