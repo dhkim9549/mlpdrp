@@ -218,9 +218,9 @@ public class MLPDRP {
         featureData[0] = cllct_rate_old;
         featureData[1] = rescaleAmt(debt_ramt);
         featureData[2] = rescaleAmt(dischrg_dur_month, 0, 120);
-        //featureData[3] = rescaleAmt(org_guarnt_dur_month, 0, 120);
-        featureData[3] = rescaleYn(guarnt_dvcd_rent_yn);
+        featureData[3] = rescaleAmt(org_guarnt_dur_month, 0, 120, true);
         /*
+        featureData[4] = rescaleYn(guarnt_dvcd_rent_yn);
         featureData[5] = rescaleYn(guarnt_dvcd_mid_yn);
         featureData[6] = rescaleYn(guarnt_dvcd_buy_yn);
         featureData[7] = rescaleYn(crdrc_yn);
@@ -257,9 +257,9 @@ public class MLPDRP {
             featureData[0] = 0.0;
             featureData[1] = rescaleAmt(10000000);
             featureData[2] = rescaleAmt(i * 10.0, 0, 120);
-            //featureData[3] = rescaleAmt(36, 0, 120);
-            featureData[3] = 1.0;
+            featureData[3] = rescaleAmt(36, 0, 120);
             /*
+            featureData[4] = 0.0;
             featureData[5] = 0.0;
             featureData[6] = 0.0;
             featureData[7] = 0.0;
@@ -283,6 +283,15 @@ public class MLPDRP {
     }
 
     public static double rescaleAmt(double x, double min, double max) {
+        return rescaleAmt(x, min, max, false);
+    }
+
+    public static double rescaleAmt(double x, double min, double max, boolean forceMin) {
+        if(forceMin) {
+            if(x < min) {
+                x = min;
+            }
+        }
         double base = (max - min) / 10.0;
         double y = (Math.log(x - min + base) - Math.log(base)) / (Math.log(max - min + base) - Math.log(base));
         return y;
