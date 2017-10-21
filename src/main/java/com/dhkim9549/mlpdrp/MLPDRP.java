@@ -239,9 +239,8 @@ public class MLPDRP {
 /*
         System.out.println("\nguarnt_no = " + guarnt_no);
         System.out.println(cllct_rate_old + " " + debt_ramt + " " + dischrg_dur_month);
-*/
         System.out.println("ds = " + ds);
-
+*/
 
         return ds;
     }
@@ -256,7 +255,7 @@ public class MLPDRP {
             featureData[0] = 0.0;
             featureData[1] = rescaleAmt(10000000);
             featureData[2] = rescaleAmt(i * 10.0, 0, 120);
-            featureData[3] = 0.0;
+            featureData[3] = 1.0;
             featureData[4] = 0.0;
             featureData[5] = 0.0;
             featureData[6] = 0.0;
