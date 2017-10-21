@@ -14,10 +14,15 @@ public class MLPDRPEval {
 
     static LineNumberReader in = null;
     static String testDataInputFileName = "/down/collect_data/collect_data_20150101.txt";
+    static String modelInputFileName = "/down/sin/drp_model_MLPDRP_h2_uSGD_mb16_ss16_150000.zip";
 
     public static void main(String[] args) throws Exception {
 
-        MultiLayerNetwork model = MLPDRP.readModelFromFile("/down/sin/drp_model_MLPDRP_h2_uSGD_mb16_ss16_150000.zip");
+        if(args.length >= 1) {
+            modelInputFileName = args[0];
+        }
+
+        MultiLayerNetwork model = MLPDRP.readModelFromFile(modelInputFileName);
 
         evaluateModelBatch(model);
 
