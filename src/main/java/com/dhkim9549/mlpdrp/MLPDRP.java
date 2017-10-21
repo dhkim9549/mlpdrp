@@ -51,7 +51,7 @@ public class MLPDRP {
 
         System.out.println("************************************************");
         System.out.println("hpId = " + hpId);
-        System.out.println("Number of hidden layers = 3");
+        System.out.println("Number of hidden layers = 2");
         System.out.println("learnigRate = " + learnigRate);
         System.out.println("Updater = " + "SGD");
         System.out.println("mini-batch size (batchSize) = " + batchSize);
@@ -122,11 +122,7 @@ public class MLPDRP {
                         .weightInit(WeightInit.XAVIER)
                         .activation(Activation.RELU)
                         .build())
-                .layer(3, new DenseLayer.Builder().nIn(numHiddenNodes).nOut(numHiddenNodes)
-                        .weightInit(WeightInit.XAVIER)
-                        .activation(Activation.RELU)
-                        .build())
-                .layer(4, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
+                .layer(3, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
                         .weightInit(WeightInit.XAVIER)
                         .activation(Activation.SOFTMAX)
                         .nIn(numHiddenNodes).nOut(numOutputs).build())
