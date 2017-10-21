@@ -59,12 +59,21 @@ public class MLPDRPEval {
                 continue;
             }
 
+            long seq = rand.nextLong();
             String guarnt_no = MLPDRP.getToken(s, 1, "\t");
             double cllct_rate = Double.parseDouble(MLPDRP.getToken(s, 18, "\t"));
             double cllct_rate_old = Double.parseDouble(MLPDRP.getToken(s, 17, "\t"));
             long debt_ramt = Long.parseLong(MLPDRP.getToken(s, 16, "\t"));
             long dischrg_dur_month = Long.parseLong(MLPDRP.getToken(s, 3, "\t"));
-            long seq = rand.nextLong();
+            long org_guarnt_dur_month = Long.parseLong(MLPDRP.getToken(s, 2, "\t")); // new input
+            String guarnt_dvcd_rent_yn = MLPDRP.getToken(s, 4, "\t");
+            String guarnt_dvcd_mid_yn = MLPDRP.getToken(s, 5, "\t");
+            String guarnt_dvcd_buy_yn = MLPDRP.getToken(s, 6, "\t");
+            String crdrc_yn = MLPDRP.getToken(s, 7, "\t");
+            String revivl_yn = MLPDRP.getToken(s, 8, "\t");
+            String exempt_yn = MLPDRP.getToken(s, 9, "\t");
+            String sptrepay_yn = MLPDRP.getToken(s, 10, "\t");
+            String psvact_yn = MLPDRP.getToken(s, 11, "\t");
 
             double[] featureData = new double[MLPDRP.numOfInputs];
 
