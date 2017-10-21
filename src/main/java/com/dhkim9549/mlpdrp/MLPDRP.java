@@ -42,7 +42,7 @@ public class MLPDRP {
     static long nEvalSamples = 10000;
 
     // Number of input variables to the neural network
-    static int numOfInputs = 12;
+    static int numOfInputs = 5;
 
     static LineNumberReader in = null;
     static String trainingDataInputFileName = "/down/collect_data/collect_data_20130101.txt";
@@ -220,6 +220,7 @@ public class MLPDRP {
         featureData[2] = rescaleAmt(dischrg_dur_month, 0, 120);
         featureData[3] = rescaleAmt(org_guarnt_dur_month, 0, 120);
         featureData[4] = rescaleYn(guarnt_dvcd_rent_yn);
+        /*
         featureData[5] = rescaleYn(guarnt_dvcd_mid_yn);
         featureData[6] = rescaleYn(guarnt_dvcd_buy_yn);
         featureData[7] = rescaleYn(crdrc_yn);
@@ -227,6 +228,7 @@ public class MLPDRP {
         featureData[9] = rescaleYn(exempt_yn);
         featureData[10] = rescaleYn(sptrepay_yn);
         featureData[11] = rescaleYn(psvact_yn);
+        */
 
         labelData[0] = cllct_rate;
         labelData[1] = 1.0 - cllct_rate;
@@ -257,6 +259,7 @@ public class MLPDRP {
             featureData[2] = rescaleAmt(i * 10.0, 0, 120);
             featureData[3] = 1.0;
             featureData[4] = 0.0;
+            /*
             featureData[5] = 0.0;
             featureData[6] = 0.0;
             featureData[7] = 0.0;
@@ -264,6 +267,7 @@ public class MLPDRP {
             featureData[9] = 0.0;
             featureData[10] = 0.0;
             featureData[11] = 0.0;
+            */
 
             INDArray feature = Nd4j.create(featureData, new int[]{1, numOfInputs});
             INDArray output = model.output(feature);
