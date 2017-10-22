@@ -27,7 +27,7 @@ import java.io.*;
  */
 public class MLPDRP {
 
-    static String hpId = "MLPDRP_h3_uSGD_mb16_ss16";
+    static String hpId = "MLPDRP_h5_uSGD_mb16_ss16";
 
     //double learnigRate = Double.parseDouble(args[0]);
     static double learnigRate = 0.0025;
@@ -51,7 +51,7 @@ public class MLPDRP {
 
         System.out.println("************************************************");
         System.out.println("hpId = " + hpId);
-        System.out.println("Number of hidden layers = 3");
+        System.out.println("Number of hidden layers = 5");
         System.out.println("learnigRate = " + learnigRate);
         System.out.println("Updater = " + "SGD");
         System.out.println("mini-batch size (batchSize) = " + batchSize);
@@ -126,7 +126,15 @@ public class MLPDRP {
                         .weightInit(WeightInit.XAVIER)
                         .activation(Activation.RELU)
                         .build())
-                .layer(4, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
+                .layer(4, new DenseLayer.Builder().nIn(numHiddenNodes).nOut(numHiddenNodes)
+                        .weightInit(WeightInit.XAVIER)
+                        .activation(Activation.RELU)
+                        .build())
+                .layer(5, new DenseLayer.Builder().nIn(numHiddenNodes).nOut(numHiddenNodes)
+                        .weightInit(WeightInit.XAVIER)
+                        .activation(Activation.RELU)
+                        .build())
+                .layer(6, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
                         .weightInit(WeightInit.XAVIER)
                         .activation(Activation.SOFTMAX)
                         .nIn(numHiddenNodes).nOut(numOutputs).build())
