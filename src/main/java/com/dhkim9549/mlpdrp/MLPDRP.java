@@ -227,8 +227,8 @@ public class MLPDRP {
         long rdbtr_2_cnt = Long.parseLong(getToken(s, 13, "\t")); // new input
         long age = Long.parseLong(getToken(s, 14, "\t")); // new input
         long dischrg_occr_amt = Long.parseLong(getToken(s, 15, "\t")); // new input
-        String prscp_cmplt_yn = getToken(s, 18, "\t"); // new input
-        String ibon_amtz_yn = getToken(s, 19, "\t"); // new input
+        String prscp_cmplt_yn = getToken(s, 19, "\t"); // new input
+        String ibon_amtz_yn = getToken(s, 20, "\t"); // new input
 
         double[] featureData = new double[numOfInputs];
         double[] labelData = new double[2];
