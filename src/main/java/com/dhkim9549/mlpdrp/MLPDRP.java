@@ -260,10 +260,12 @@ public class MLPDRP {
 
         DataSet ds = new DataSet(feature, label);
 
+        /*
         System.out.println("\n guarnt_no = " + guarnt_no);
         System.out.println(rdbtr_2_cnt + " " + age + " " + dischrg_occr_amt + " " + prscp_cmplt_yn + " " + ibon_amtz_yn);
         System.out.println(cllct_rate);
         System.out.println("ds = " + ds);
+        */
 
         return ds;
     }
