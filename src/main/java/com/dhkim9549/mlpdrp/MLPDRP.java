@@ -42,7 +42,7 @@ public class MLPDRP {
     static long nEvalSamples = 10000;
 
     // Number of input variables to the neural network
-    static int numOfInputs = 12;
+    static int numOfInputs = 18;
 
     static LineNumberReader in = null;
     static String trainingDataInputFileName = "/down/collect_data/collect_data_20130101.txt";
@@ -214,7 +214,7 @@ public class MLPDRP {
         double cllct_rate_old = Double.parseDouble(getToken(s, 17, "\t"));
         long debt_ramt = Long.parseLong(getToken(s, 16, "\t"));
         long dischrg_dur_month = Long.parseLong(getToken(s, 3, "\t"));
-        long org_guarnt_dur_month = Long.parseLong(getToken(s, 2, "\t")); // new input
+        long org_guarnt_dur_month = Long.parseLong(getToken(s, 2, "\t"));
         String guarnt_dvcd_rent_yn = getToken(s, 4, "\t");
         String guarnt_dvcd_mid_yn = getToken(s, 5, "\t");
         String guarnt_dvcd_buy_yn = getToken(s, 6, "\t");
@@ -223,6 +223,12 @@ public class MLPDRP {
         String exempt_yn = getToken(s, 9, "\t");
         String sptrepay_yn = getToken(s, 10, "\t");
         String psvact_yn = getToken(s, 11, "\t");
+        long rdbtr_1_cnt = Long.parseLong(getToken(s, 12, "\t")); // new input
+        long rdbtr_2_cnt = Long.parseLong(getToken(s, 13, "\t")); // new input
+        long age = Long.parseLong(getToken(s, 14, "\t")); // new input
+        long dischrg_occr_amt = Long.parseLong(getToken(s, 15, "\t")); // new input
+        String prscp_cmplt_yn = getToken(s, 18, "\t"); // new input
+        String ibon_amtz_yn = getToken(s, 19, "\t"); // new input
 
         double[] featureData = new double[numOfInputs];
         double[] labelData = new double[2];
@@ -239,6 +245,12 @@ public class MLPDRP {
         featureData[9] = rescaleYn(exempt_yn);
         featureData[10] = rescaleYn(sptrepay_yn);
         featureData[11] = rescaleYn(psvact_yn);
+        featureData[12] = rescaleNum(rdbtr_1_cnt); // new input
+        featureData[13] = rescaleNum(rdbtr_2_cnt); // new input
+        featureData[14] = rescaleAmt(age, 0, 100); // new input
+        featureData[15] = rescaleAmt(dischrg_occr_amt); // new input
+        featureData[16] = rescaleYn(prscp_cmplt_yn); // new input
+        featureData[17] = rescaleYn(ibon_amtz_yn); // new input
 
         labelData[0] = cllct_rate;
         labelData[1] = 1.0 - cllct_rate;
@@ -247,12 +259,11 @@ public class MLPDRP {
         INDArray label = Nd4j.create(labelData, new int[]{1, 2});
 
         DataSet ds = new DataSet(feature, label);
-        /*
-        System.out.println("\nguarnt_no = " + guarnt_no);
-        System.out.println(cllct_rate_old + " " + debt_ramt + " " + dischrg_dur_month + " " + org_guarnt_dur_month + " " + guarnt_dvcd_rent_yn);
+
+        System.out.println("\n guarnt_no = " + guarnt_no);
+        System.out.println(rdbtr_2_cnt + " " + age + " " + dischrg_occr_amt + " " + prscp_cmplt_yn + " " + ibon_amtz_yn);
         System.out.println(cllct_rate);
         System.out.println("ds = " + ds);
-        */
 
         return ds;
     }
@@ -308,6 +319,14 @@ public class MLPDRP {
     public static double rescaleYn(String x) {
         double y = 0.0;
         if(x.equals("Y")) {
+            y = 1.0;
+        }
+        return y;
+    }
+
+    public static double rescaleNum(long x) {
+        double y = 0.0;
+        if(x > 0) {
             y = 1.0;
         }
         return y;
