@@ -283,12 +283,14 @@ public class MLPDRP {
             featureData[9] = 0.0;
             featureData[10] = 0.0;
             featureData[11] = 0.0;
+            /*
             featureData[12] = rescaleNum(0); // new input
             featureData[13] = rescaleNum(0); // new input
             featureData[14] = rescaleAmt(33, 0, 100); // new input
             featureData[15] = rescaleAmt(44440000); // new input
             featureData[16] = rescaleYn("N"); // new input
             featureData[17] = rescaleYn("N"); // new input
+            */
 
             INDArray feature = Nd4j.create(featureData, new int[]{1, numOfInputs});
             INDArray output = model.output(feature);
