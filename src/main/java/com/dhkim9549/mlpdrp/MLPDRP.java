@@ -42,7 +42,7 @@ public class MLPDRP {
     static long nEvalSamples = 10000;
 
     // Number of input variables to the neural network
-    static int numOfInputs = 17;
+    static int numOfInputs = 18;
 
     static LineNumberReader in = null;
     static String trainingDataInputFileName = "/down/collect_data/collect_data_20130101.txt";
@@ -244,8 +244,8 @@ public class MLPDRP {
         featureData[14] = rescaleAmt(age, 0, 100); // new input
         featureData[15] = rescaleAmt(dischrg_occr_amt); // new input
         featureData[16] = rescaleYn(prscp_cmplt_yn); // new input
-        /*
         featureData[17] = rescaleYn(ibon_amtz_yn); // new input
+        /*
         featureData[18] = rescaleNum(rdbtr_3_cnt); // new input
         */
 
@@ -289,9 +289,9 @@ public class MLPDRP {
             featureData[13] = 0.0; // new input
             featureData[14] = rescaleAmt(40, 0, 100); // new input
             featureData[15] = rescaleAmt(20000000); // new input
-            featureData[16] = 0.1 * i; // new input
+            featureData[16] = rescaleYn("N"); // new input
+            featureData[17] = 0.1 * i; // new input
             /*
-            featureData[17] = rescaleYn("N"); // new input
             featureData[18] = rescaleNum(0); // new input
             */
 
