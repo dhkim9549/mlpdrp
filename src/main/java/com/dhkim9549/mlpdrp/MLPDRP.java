@@ -79,7 +79,8 @@ public class MLPDRP {
                 System.out.println("i = " + i);
             }
             if(i % 5000 == 0) {
-                evaluateModel(model);
+                //evaluateModel(model);
+                MLPDRPEval.evaluateModelBatch(model);
             }
 
             List<DataSet> listDs = getTrainingData();
@@ -221,6 +222,7 @@ public class MLPDRP {
         long dischrg_occr_amt = Long.parseLong(getToken(s, 15, "\t")); // new input
         String prscp_cmplt_yn = getToken(s, 19, "\t"); // new input
         String ibon_amtz_yn = getToken(s, 20, "\t"); // new input
+        long rdbtr_3_cnt = Long.parseLong(getToken(s, 21, "\t")); // new input
 
         double[] featureData = new double[numOfInputs];
         double[] labelData = new double[2];
@@ -244,6 +246,7 @@ public class MLPDRP {
         featureData[15] = rescaleAmt(dischrg_occr_amt); // new input
         featureData[16] = rescaleYn(prscp_cmplt_yn); // new input
         featureData[17] = rescaleYn(ibon_amtz_yn); // new input
+        featureData[18] = rescaleNum(rdbtr_3_cnt); // new input
         */
 
         labelData[0] = cllct_rate;

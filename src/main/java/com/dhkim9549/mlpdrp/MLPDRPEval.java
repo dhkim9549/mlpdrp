@@ -87,6 +87,7 @@ public class MLPDRPEval {
             long dischrg_occr_amt = Long.parseLong(MLPDRP.getToken(s, 15, "\t")); // new input
             String prscp_cmplt_yn = MLPDRP.getToken(s, 19, "\t"); // new input
             String ibon_amtz_yn = MLPDRP.getToken(s, 20, "\t"); // new input
+            long rdbtr_3_cnt = Long.parseLong(MLPDRP.getToken(s, 21, "\t")); // new input
 
 
             double[] featureData = new double[MLPDRP.numOfInputs];
@@ -110,6 +111,7 @@ public class MLPDRPEval {
             featureData[15] = MLPDRP.rescaleAmt(dischrg_occr_amt); // new input
             featureData[16] = MLPDRP.rescaleYn(prscp_cmplt_yn); // new input
             featureData[17] = MLPDRP.rescaleYn(ibon_amtz_yn); // new input
+            featureData[18] = MLPDRP.rescaleNum(rdbtr_3_cnt); // new input
             */
 
             INDArray feature = Nd4j.create(featureData, new int[]{1, MLPDRP.numOfInputs});
