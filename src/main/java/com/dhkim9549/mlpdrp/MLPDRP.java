@@ -78,7 +78,7 @@ public class MLPDRP {
             if(i % 1000 == 0) {
                 System.out.println("i = " + i);
             }
-            if(i % 5000 == 0) {
+            if(i % 50000 == 0) {
                 //evaluateModel(model);
                 MLPDRPEval.evaluateModelBatch(model);
             }
