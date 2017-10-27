@@ -271,7 +271,7 @@ public class MLPDRP {
 
         System.out.println("Evaluating...");
 
-        for(int i = 1; i <= 10; i++) {
+        for(int i = 0; i <= 10; i++) {
             double[] featureData = new double[numOfInputs];
             featureData[0] = 0.0;
             featureData[1] = rescaleAmt(10000000);
@@ -286,7 +286,7 @@ public class MLPDRP {
             featureData[10] = 0.0;
             featureData[11] = 0.0;
             featureData[12] = rescaleNum(0); // new input
-            featureData[13] = rescaleNum(i); // new input
+            featureData[13] = (i * 0.1); // new input
             featureData[14] = rescaleAmt(40, 0, 100); // new input
             /*
             featureData[15] = rescaleAmt(44440000); // new input
