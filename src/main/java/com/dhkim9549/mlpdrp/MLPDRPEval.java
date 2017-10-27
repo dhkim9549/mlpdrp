@@ -57,10 +57,6 @@ public class MLPDRPEval {
         while((s = in.readLine()) != null) {
 
             i++;
-            if(i % 10000 == 0) {
-                System.out.println("i = " + i);
-                System.out.println("MSE = " + (squared_error / (double)i));
-            }
 
             if(s.indexOf("CLLCT_RATE") >= 0) {
                 continue;
@@ -126,6 +122,15 @@ public class MLPDRPEval {
             System.out.print("  output = " + output);
             System.out.println("  cllct_rate = " + cllct_rate);
             */
+
+            if(i % 10000 == 0) {
+                System.out.print("feature = " + feature);
+                System.out.print("  output = " + output);
+                System.out.println("  cllct_rate = " + cllct_rate);
+                
+                System.out.println("i = " + i);
+                System.out.println("MSE = " + (squared_error / (double)i));
+            }
 
             String s2 = "";
             s2 += seq + "\t";
