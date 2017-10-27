@@ -276,7 +276,7 @@ public class MLPDRP {
             double[] featureData = new double[numOfInputs];
             featureData[0] = 0.0;
             featureData[1] = rescaleAmt(10000000);
-            featureData[2] = rescaleAmt(i * 10.0, 0, 120);
+            featureData[2] = rescaleAmt(36, 0, 120);
             featureData[3] = rescaleAmt(36, 0, 120);
             featureData[4] = 1.0;
             featureData[5] = 0.0;
@@ -288,7 +288,7 @@ public class MLPDRP {
             featureData[11] = 0.0;
             featureData[12] = rescaleNum(0); // new input
             featureData[13] = rescaleNum(0); // new input
-            featureData[14] = rescaleAmt(33, 0, 100); // new input
+            featureData[14] = rescaleAmt(i * 10, 0, 100); // new input
             /*
             featureData[15] = rescaleAmt(44440000); // new input
             featureData[16] = rescaleYn("N"); // new input
