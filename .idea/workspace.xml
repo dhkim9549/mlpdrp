@@ -18,8 +18,8 @@
       <file leaf-file-name="MLPDRP.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dhkim9549/mlpdrp/MLPDRP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="290" column="47" lean-forward="false" selection-start-line="290" selection-start-column="47" selection-end-line="290" selection-end-column="47" />
+            <state relative-caret-position="370">
+              <caret line="288" column="42" lean-forward="false" selection-start-line="288" selection-start-column="42" selection-end-line="288" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,6 +57,7 @@
       <find>css_model_MLPCSS_h2_uSGD_mb16_ss16_150000.zip</find>
       <find>numOfInputs</find>
       <find>evaluateModel</find>
+      <find>cb_grd</find>
     </findStrings>
     <replaceStrings>
       <replace>DRP</replace>
@@ -612,8 +613,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dhkim9549/mlpdrp/MLPDRP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="290" column="47" lean-forward="false" selection-start-line="290" selection-start-column="47" selection-end-line="290" selection-end-column="47" />
+        <state relative-caret-position="370">
+          <caret line="288" column="42" lean-forward="false" selection-start-line="288" selection-start-column="42" selection-end-line="288" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
