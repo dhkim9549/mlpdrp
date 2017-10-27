@@ -285,10 +285,10 @@ public class MLPDRP {
             featureData[9] = 0.0;
             featureData[10] = 0.0;
             featureData[11] = 0.0;
-            featureData[12] = (i * 0.1); // new input
+            featureData[12] = 0.0;; // new input
             featureData[13] = 0.0; // new input
             featureData[14] = rescaleAmt(40, 0, 100); // new input
-            featureData[15] = rescaleAmt(44440000); // new input
+            featureData[15] = rescaleAmt(i * 10000000); // new input
             /*
             featureData[16] = rescaleYn("N"); // new input
             featureData[17] = rescaleYn("N"); // new input
