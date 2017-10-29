@@ -14,7 +14,7 @@ public class MLPDRPEval {
 
     static LineNumberReader in = null;
     static String testDataInputFileName = "/down/collect_data/collect_data_20150101.txt";
-    static String modelInputFileName = "/down/sin/drp_model_MLPDRP_h2_uSGD_mb16_ss16_150000.zip";
+    static String modelInputFileName = "/down/model/drp_model_MLPDRP_h3_uSGD_mb16_ss16_3250000.zip";
 
     static double mean = 0.0;
 
