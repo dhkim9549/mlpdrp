@@ -103,12 +103,10 @@ public class MLPDRPEval {
             featureData[12] = MLPDRP.rescaleNum(rdbtr_1_cnt); // new input
             featureData[13] = MLPDRP.rescaleNum(rdbtr_2_cnt); // new input
             featureData[14] = MLPDRP.rescaleAmt(age, 0, 100); // new input
-            /*
             featureData[15] = MLPDRP.rescaleAmt(dischrg_occr_amt); // new input
             featureData[16] = MLPDRP.rescaleYn(prscp_cmplt_yn); // new input
             featureData[17] = MLPDRP.rescaleYn(ibon_amtz_yn); // new input
             featureData[18] = MLPDRP.rescaleNum(rdbtr_3_cnt); // new input
-            */
 
             INDArray feature = Nd4j.create(featureData, new int[]{1, MLPDRP.numOfInputs});
             INDArray output = model.output(feature);
@@ -123,7 +121,7 @@ public class MLPDRPEval {
             System.out.println("  cllct_rate = " + cllct_rate);
             */
 
-            if(i % 10000 == 0) {
+            if(i % 50000 == 0) {
                 System.out.print("feature = " + feature);
                 System.out.print("  output = " + output);
                 System.out.println("  cllct_rate = " + cllct_rate);
