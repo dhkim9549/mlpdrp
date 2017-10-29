@@ -16,13 +16,10 @@ public class MLPDRPEval {
     static String testDataInputFileName = "/down/collect_data/collect_data_20150101.txt";
     static String modelInputFileName = "/down/model/drp_model_MLPDRP_h3_uSGD_mb16_ss16_3250000.zip";
 
-    static double mean = 0.0;
-
     public static void main(String[] args) throws Exception {
 
         if(args.length >= 1) {
-            //modelInputFileName = args[0];
-            mean = Double.parseDouble(args[0]);
+            modelInputFileName = args[0];
         }
 
         MultiLayerNetwork model = MLPDRP.readModelFromFile(modelInputFileName);
@@ -115,7 +112,6 @@ public class MLPDRPEval {
             INDArray output = model.output(feature);
 
             double predicted_cllct_rat = output.getDouble(0);
-            predicted_cllct_rat = mean;
 
             abs_error +=  Math.abs(predicted_cllct_rat - cllct_rate);
 
