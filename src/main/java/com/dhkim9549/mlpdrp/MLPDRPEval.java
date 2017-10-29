@@ -112,6 +112,7 @@ public class MLPDRPEval {
             INDArray output = model.output(feature);
 
             double predicted_cllct_rat = output.getDouble(0);
+            predicted_cllct_rat = 0.5;
 
             squared_error +=  Math.pow((predicted_cllct_rat - cllct_rate), 2.0);
 
