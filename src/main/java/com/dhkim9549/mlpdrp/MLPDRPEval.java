@@ -112,7 +112,7 @@ public class MLPDRPEval {
             INDArray output = model.output(feature);
 
             double predicted_cllct_rat = output.getDouble(0);
-            predicted_cllct_rat = 0.09318;
+            predicted_cllct_rat = 0.06;
 
             abs_error +=  Math.abs(predicted_cllct_rat - cllct_rate);
 
@@ -128,7 +128,7 @@ public class MLPDRPEval {
                 System.out.println("  cllct_rate = " + cllct_rate);
 
                 System.out.println("i = " + i);
-                System.out.println("MSE = " + (abs_error / (double)i));
+                System.out.println("MAE = " + (abs_error / (double)i));
             }
 
             String s2 = "";
@@ -146,7 +146,7 @@ public class MLPDRPEval {
             out.flush();
         }
 
-        System.out.println("MSE = " + (abs_error / (double)i));
+        System.out.println("MAE = " + (abs_error / (double)i));
 
         out.close();
     }
