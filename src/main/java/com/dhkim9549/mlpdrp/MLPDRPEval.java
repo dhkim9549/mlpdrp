@@ -112,7 +112,7 @@ public class MLPDRPEval {
             INDArray output = model.output(feature);
 
             double predicted_cllct_rat = output.getDouble(0);
-            predicted_cllct_rat = 0.07;
+            predicted_cllct_rat = 0.05;
 
             abs_error +=  Math.abs(predicted_cllct_rat - cllct_rate);
 
