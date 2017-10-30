@@ -56,8 +56,6 @@ public class MLPDRPEval {
         String s = "";
         while((s = in.readLine()) != null) {
 
-            i++;
-
             if(s.indexOf("CLLCT_RATE") >= 0) {
                 continue;
             }
@@ -115,7 +113,7 @@ public class MLPDRPEval {
 
             abs_error +=  Math.abs(predicted_cllct_rat - cllct_rate);
 
-            if(i == 1) {
+            if(i == 0) {
                 System.out.print("feature = " + feature);
                 System.out.print("  output = " + output);
                 System.out.println("  cllct_rate = " + cllct_rate);
@@ -145,6 +143,8 @@ public class MLPDRPEval {
 
             out.write(s2 + "\n");
             out.flush();
+
+            i++;
         }
 
         System.out.println("MAE = " + (abs_error / (double)i));
