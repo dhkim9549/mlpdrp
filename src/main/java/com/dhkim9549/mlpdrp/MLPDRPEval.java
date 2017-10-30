@@ -115,11 +115,11 @@ public class MLPDRPEval {
 
             abs_error +=  Math.abs(predicted_cllct_rat - cllct_rate);
 
-            /*
-            System.out.print("feature = " + feature);
-            System.out.print("  output = " + output);
-            System.out.println("  cllct_rate = " + cllct_rate);
-            */
+            if(i == 0) {
+                System.out.print("feature = " + feature);
+                System.out.print("  output = " + output);
+                System.out.println("  cllct_rate = " + cllct_rate);
+            }
 
             /*
             if(i % 50000 == 0) {
