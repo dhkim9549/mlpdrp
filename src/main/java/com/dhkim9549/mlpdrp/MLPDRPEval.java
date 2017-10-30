@@ -121,6 +121,7 @@ public class MLPDRPEval {
             System.out.println("  cllct_rate = " + cllct_rate);
             */
 
+            /*
             if(i % 50000 == 0) {
                 System.out.print("feature = " + feature);
                 System.out.print("  output = " + output);
@@ -129,6 +130,7 @@ public class MLPDRPEval {
                 System.out.println("i = " + i);
                 System.out.println("MAE = " + (abs_error / (double)i));
             }
+            */
 
             String s2 = "";
             s2 += seq + "\t";
