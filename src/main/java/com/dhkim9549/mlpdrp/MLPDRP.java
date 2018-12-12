@@ -52,7 +52,6 @@ public class MLPDRP {
         System.out.println("************************************************");
         System.out.println("hpId = " + hpId);
         System.out.println("Number of hidden layers = 3");
-        System.out.println("Updater = " + "SGD");
         System.out.println("mini-batch size (batchSize) = " + batchSize);
         System.out.println("Number of sample size per iteration (nSamples) = " + nSamples);
         System.out.println("i >= 0");
@@ -106,7 +105,7 @@ public class MLPDRP {
         Map<Integer, Double> lrSchedule = new HashMap<>();
         for(int i = 0; i <= 10; i++) {
             double learningRate = 0.0025 * ((10.0 - (double)i) / 10.0) + 0.000025 * (((double)i) / 10.0);
-            lrSchedule.put(i * 10000, learningRate); // iteration #, learning rate
+            lrSchedule.put(i * 100000, learningRate); // iteration #, learning rate
         }
         System.out.println("lrSchedule = " + lrSchedule);
 
