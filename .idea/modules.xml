@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/mlpdrp.iml" filepath="$PROJECT_DIR$/mlpdrp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mlp-drp.iml" filepath="$PROJECT_DIR$/mlp-drp.iml" />
     </modules>
   </component>
 </project>

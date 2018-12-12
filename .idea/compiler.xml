@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mlpdrp" />
+        <module name="mlp-drp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mlpdrp" target="1.8" />
+      <module name="mlp-drp" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

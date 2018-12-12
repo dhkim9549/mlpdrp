@@ -16,7 +16,10 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.factory.Nd4j;
+import org.nd4j.linalg.learning.config.Nesterovs;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
+import org.nd4j.linalg.schedule.MapSchedule;
+import org.nd4j.linalg.schedule.ScheduleType;
 
 import java.util.*;
 import java.io.*;
@@ -59,7 +62,7 @@ public class MLPDRP {
         System.out.println("i >= 0");
         System.out.println("************************************************");
 
-        MultiLayerNetwork model = getInitModel(learnigRate);
+        MultiLayerNetwork model = getInitModel();
         //MultiLayerNetwork model = readModelFromFile("/down/sin/css_model_MLPDRP_h2_uSGD_mb16_ss16_200000.zip");
 
         NeuralNetConfiguration config = model.conf();
@@ -96,7 +99,7 @@ public class MLPDRP {
         }
     }
 
-    public static MultiLayerNetwork getInitModel(double learningRate) throws Exception {
+    public static MultiLayerNetwork getInitModel() throws Exception {
 
         int seed = 123;
 
@@ -104,13 +107,17 @@ public class MLPDRP {
         int numOutputs = 2;
         int numHiddenNodes = 30;
 
+        Map<Integer, Double> lrSchedule = new HashMap<>();
+        for(int i = 0; i <= 10; i++) {
+            double learningRate = 0.0025 * ((10.0 - (double)i) / 10.0) + 0.000025 * (((double)i) / 10.0);
+            lrSchedule.put(i * 1000, learningRate); // iteration #, learning rate
+        }
+        System.out.println("lrSchedule = " + lrSchedule);
+
         System.out.println("Build model....");
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
-                .iterations(1)
-                .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-                .learningRate(learningRate)
-                .updater(Updater.SGD)
+                .updater(new Nesterovs(new MapSchedule(ScheduleType.ITERATION, lrSchedule)))
                 .list()
                 .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
                         .weightInit(WeightInit.XAVIER)
