@@ -32,9 +32,6 @@ public class MLPDRP {
 
     static String hpId = "MLPDRP_h3_uSGD_mb16_ss16";
 
-    //double learnigRate = Double.parseDouble(args[0]);
-    static double learnigRate = 0.0025;
-
     // Number of sample size per iteration
     static long nSamples = 16;
 
@@ -55,7 +52,6 @@ public class MLPDRP {
         System.out.println("************************************************");
         System.out.println("hpId = " + hpId);
         System.out.println("Number of hidden layers = 3");
-        System.out.println("learnigRate = " + learnigRate);
         System.out.println("Updater = " + "SGD");
         System.out.println("mini-batch size (batchSize) = " + batchSize);
         System.out.println("Number of sample size per iteration (nSamples) = " + nSamples);
@@ -83,7 +79,7 @@ public class MLPDRP {
                 // evaluateModel(model);
             }
 
-            if(i % 50000 == 0) {
+            if(i % 10000 == 0) {
                 MLPDRPEval.evaluateModelBatch(model);
             }
 
