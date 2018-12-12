@@ -106,7 +106,7 @@ public class MLPDRP {
         Map<Integer, Double> lrSchedule = new HashMap<>();
         for(int i = 0; i <= 10; i++) {
             double learningRate = 0.0025 * ((10.0 - (double)i) / 10.0) + 0.000025 * (((double)i) / 10.0);
-            lrSchedule.put(i * 1000, learningRate); // iteration #, learning rate
+            lrSchedule.put(i * 10000, learningRate); // iteration #, learning rate
         }
         System.out.println("lrSchedule = " + lrSchedule);
 
