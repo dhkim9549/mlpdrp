@@ -103,7 +103,7 @@ public class MLPDRP {
 
         int numInputs = numOfInputs;
         int numOutputs = 2;
-        int numHiddenNodes = 30;
+        int numHiddenNodes = 30*2;
 
         Map<Integer, Double> lrSchedule = new HashMap<>();
         for(int i = 0; i <= 10; i++) {
