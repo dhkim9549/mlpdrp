@@ -74,6 +74,7 @@ public class MLPDRP {
             i++;
 
             if(i % 10000 == 0) {
+                System.out.println(new Date());
                 System.out.println("i = " + i);
                 // evaluateModel(model);
             }
@@ -113,6 +114,7 @@ public class MLPDRP {
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
                 .updater(new Nesterovs(new MapSchedule(ScheduleType.ITERATION, lrSchedule)))
+                .l1(0.1)
                 .list()
                 .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
                         .weightInit(WeightInit.XAVIER)
