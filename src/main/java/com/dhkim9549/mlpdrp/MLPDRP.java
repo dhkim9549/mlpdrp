@@ -76,6 +76,8 @@ public class MLPDRP {
             if(i % 10000 == 0) {
                 System.out.println(new Date());
                 System.out.println("i = " + i);
+                System.out.println("model.numParams() = " + model.numParams());
+                System.out.println("model.params() = " + model.params());
                 // evaluateModel(model);
             }
 
