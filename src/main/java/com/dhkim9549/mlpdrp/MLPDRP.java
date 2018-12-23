@@ -112,7 +112,7 @@ public class MLPDRP {
         }
         System.out.println("lrSchedule = " + lrSchedule);
 
-        System.out.println("Build model....");
+        System.out.println("Build model.....");
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
                 .updater(new Nesterovs(new MapSchedule(ScheduleType.ITERATION, lrSchedule)))
