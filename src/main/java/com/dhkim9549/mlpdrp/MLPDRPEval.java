@@ -8,7 +8,7 @@ import scala.util.Random;
 import java.io.*;
 
 /**
- * Evaluate a trained MLP DRP model
+ * Evaluate a trained MLP-DRP model
  */
 public class MLPDRPEval {
 
