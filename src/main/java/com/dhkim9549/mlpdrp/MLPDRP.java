@@ -116,7 +116,7 @@ public class MLPDRP {
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
                 .updater(new Nesterovs(new MapSchedule(ScheduleType.ITERATION, lrSchedule)))
-                .l1(0.0001)
+                .l2(0.000001)
                 .list()
                 .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
                         .weightInit(WeightInit.XAVIER)
